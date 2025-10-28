@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# План обновления для README.md
 
-## Getting Started
+## 1. Краткое описание проекта
 
-First, run the development server:
+Этот проект представляет собой веб-приложение для управления теплицей. Он включает в себя функции мониторинга и управления различными параметрами, такими как температура, влажность и освещение. Приложение построено на Next.js и использует современный стек технологий для фронтенда и бэкенда.
+
+## 2. Структура проекта
+
+Ниже приведено описание основных директорий и их назначения:
+
+-   **`/app`**: Основная директория приложения, использующая новую модель маршрутизации Next.js (App Router).
+    -   **`/app/api`**: Содержит бэкенд-логику и API эндпоинты для аутентификации, управления настройками, зонами и получения данных об окружающей среде.
+    -   **`/app/dashboard`**: Страницы панели управления для отображения и взаимодействия с различными системами (аналитика, температура, влажность и т.д.).
+    -   **`/app/login`**: Страница входа в систему.
+    -   **`/app/register`**: Страница регистрации нового пользователя.
+    -   **`layout.tsx`**: Основной макет приложения.
+    -   **`page.tsx`**: Главная страница приложения.
+-   **`/components`**: Содержит переиспользуемые React-компоненты.
+    -   **`/components/ui`**: Базовые UI-компоненты (кнопки, карточки, инпуты), вероятно, из библиотеки `shadcn/ui`.
+    -   **`sidebar.tsx`**, **`header.tsx`**: Компоненты навигации и шапки сайта.
+-   **`/lib`**: Вспомогательные функции и утилиты.
+    -   **`api.ts`**: Функции для взаимодействия с внутренним API.
+    -   **`auth.ts`**: Логика, связанная с аутентификацией пользователей.
+-   **`/public`**: Статические файлы, такие как изображения и иконки.
+-   **`package.json`**: Список зависимостей проекта и скриптов для запуска.
+-   **`next.config.ts`**: Конфигурационный файл Next.js.
+-   **`tsconfig.json`**: Конфигурационный файл TypeScript.
+
+## 3. Инструкции по установке и запуску
+
+### Требования
+
+-   Node.js (версия 20.x или выше)
+-   npm или yarn
+
+### Установка
+
+1.  Склонируйте репозиторий:
+    ```bash
+    git clone <URL-репозитория>
+    cd my-app
+    ```
+
+2.  Установите зависимости:
+    ```bash
+    npm install
+    ```
+
+### Запуск сервера для разработки
+
+Для запуска приложения в режиме разработки выполните команду:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+После этого приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 4. Данные для входа
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Для доступа к защищенным разделам приложения используйте следующие учетные данные:
 
-## Learn More
+-   **Логин:** `user@example.com`
+-   **Пароль:** `password`
 
-To learn more about Next.js, take a look at the following resources:
+*Примечание: Эти данные являются плейсхолдерами. Реальные учетные данные должны храниться в безопасном месте.*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 5. Описание API эндпоинтов
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+API предоставляет следующие эндпоинты для взаимодействия с приложением:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-   **`POST /api/auth/login`**: Аутентификация пользователя.
+-   **`POST /api/auth/register`**: Регистрация нового пользователя.
+-   **`GET /api/auth/profile`**: Получение данных профиля текущего пользователя.
+-   **`POST /api/auth/logout`**: Выход из системы.
+-   **`GET /api/auth/roles`**: Получение списка ролей пользователей.
+-   **`GET /api/environment/history`**: Получение истории данных об окружающей среде.
+-   **`GET /api/settings`**, **`POST /api/settings`**: Чтение и обновление настроек приложения.
+-   **`GET /api/zones`**, **`POST /api/zones`**: Чтение и управление зонами.
