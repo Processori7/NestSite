@@ -1,23 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
 import UserProfile from '@/components/user-profile';
 import UserRoleManagement from '@/components/user-role-management';
 
 export default function TestAuthPage() {
-  const [token, setToken] = useState<string | null>(null);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    // Получение токена из localStorage (в реальном приложении он будет установлен после входа)
-    const storedToken = localStorage.getItem('auth_token');
-    if (storedToken) {
-      setToken(storedToken);
-    } else {
-      setError('Токен аутентификации не найден. Пожалуйста, войдите в систему.');
-    }
-  }, []);
+  const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
+  const error = !token ? 'Токен аутентификации не найден. Пожалуйста, войдите в систему.' : '';
 
   return (
     <div className="container mx-auto py-10">

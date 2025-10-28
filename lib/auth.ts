@@ -46,7 +46,7 @@ export const verifyPassword = async (password: string, hashedPassword: string): 
 };
 
 // Функция для создания JWT токена
-export const signToken = async (payload: any): Promise<string> => {
+export const signToken = async (payload: { [key: string]: unknown }): Promise<string> => {
   const secret = new TextEncoder().encode(
     process.env.JWT_SECRET || 'fallback_secret_key_for_development'
   );
@@ -69,9 +69,9 @@ export const verifyToken = async (token: string) => {
     
     const verified = await jwtVerify(token, secret);
     return verified.payload;
-  } catch (error) {
+  } catch {
     return null;
-  }
+ }
 };
 
 // Функция для получения пользователя из токена

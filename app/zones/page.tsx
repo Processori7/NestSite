@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Lightbulb, Thermometer, Droplets, Settings, Edit, Trash2 } from "lucide-react";
+import { Plus, Lightbulb, Thermometer, Droplets, Edit, Trash2 } from "lucide-react";
 
 // Тип для зоны
 type Zone = {
@@ -31,7 +31,7 @@ type Zone = {
 
 export default function ZonesPage() {
   const [zones, setZones] = useState<Zone[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [editingZone, setEditingZone] = useState<Zone | null>(null);
   const [newZone, setNewZone] = useState({
     name: "",

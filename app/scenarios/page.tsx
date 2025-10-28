@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Lightbulb, Palette, Clock, Sun, Moon, Zap, Droplets, Thermometer, Settings } from "lucide-react";
+import { Plus, Lightbulb, Palette, Clock, Droplets, Thermometer, Settings } from "lucide-react";
 
 export default function ScenariosPage() {
   const [scenarios, setScenarios] = useState([
@@ -471,7 +471,7 @@ export default function ScenariosPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Активные сценарии</CardTitle>
-            <Sun className="h-4 w-4 text-muted-foreground" />
+            <Lightbulb className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{scenarios.filter(s => s.isActive).length}</div>

@@ -30,6 +30,6 @@ export async function GET(request: NextRequest) {
   }
 
   // Возвращаем информацию о пользователе (без пароля)
-  const { password: _, ...userWithoutPassword } = user;
+  const { ...userWithoutPassword } = user;
   return Response.json({ user: userWithoutPassword });
 }

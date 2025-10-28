@@ -3,7 +3,7 @@ import { hashPassword } from '@/lib/auth';
 import { User } from '@/lib/auth';
 
 // База данных пользователей (в реальном приложении это будет заменено на базу данных)
-let users: User[] = [
+const users: User[] = [
   {
     id: '1',
     name: 'Admin',
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     users.push(newUser);
 
     // Возвращаем успешный ответ без пароля
-    const { password: _, ...userWithoutPassword } = newUser;
+    const { ...userWithoutPassword } = newUser;
     return Response.json({ user: userWithoutPassword }, { status: 201 });
   } catch (error) {
     console.error('Ошибка регистрации:', error);

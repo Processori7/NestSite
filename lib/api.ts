@@ -29,7 +29,7 @@ export const api = {
     return response.json();
   },
 
-  post: async <T>(url: string, data: any): Promise<T> => {
+  post: async <T>(url: string, data: Record<string, unknown>): Promise<T> => {
     const response = await fetchWithAuth(url, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -37,7 +37,7 @@ export const api = {
     return response.json();
   },
 
-  put: async <T>(url: string, data: any): Promise<T> => {
+  put: async <T>(url: string, data: Record<string, unknown>): Promise<T> => {
     const response = await fetchWithAuth(url, {
       method: 'PUT',
       body: JSON.stringify(data),

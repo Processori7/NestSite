@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from './theme-toggle';
 import UserProfile from './user-profile';
 

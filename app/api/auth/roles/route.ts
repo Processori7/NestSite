@@ -4,7 +4,7 @@ import { roles, getRoleById } from '@/lib/roles';
 import { getAuthCookieFromRequest } from '@/lib/cookies'; // Импортируем новую функцию
 
 // В реальном приложении пользователи будут храниться в базе данных
-let users = [
+const users = [
   {
     id: '1',
     name: 'Admin',
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 
     // Возвращаем все доступные роли
     return NextResponse.json({ roles });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'Невалидный токен' }, { status: 401 });
   }
 }
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
       userToUpdate.permissions = role.permissions;
 
       // Возвращаем обновленного пользователя
-      const { password: _, ...userWithoutPassword } = userToUpdate;
+      const { ...userWithoutPassword } = userToUpdate;
       return NextResponse.json({ user: userWithoutPassword });
     } catch (error) {
       console.error('Ошибка обновления роли пользователя:', error);
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: 'Невалидный токен' }, { status: 401 });
   }
 }

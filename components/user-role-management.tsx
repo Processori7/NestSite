@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,7 +14,7 @@ interface UserRoleManagementProps {
 
 export default function UserRoleManagement({ token }: UserRoleManagementProps) {
   const [users, setUsers] = useState<UserWithRole[]>([]);
-  const [roles, setRoles] = useState<any[]>([]);
+  const [roles, setRoles] = useState<{id: string, name: string}[]>([]);
   const [selectedUserId, setSelectedUserId] = useState<string>('');
   const [selectedRole, setSelectedRole] = useState<string>('');
   const [loading, setLoading] = useState(true);
@@ -26,7 +25,7 @@ export default function UserRoleManagement({ token }: UserRoleManagementProps) {
     const fetchData = async () => {
       try {
         // Получение ролей
-        const rolesData = await api.get<{roles: any[]}>('/auth/roles');
+        const rolesData = await api.get<{roles: {id: string, name: string}[]}>('/auth/roles');
         setRoles(rolesData.roles);
         
         // В реальном приложении здесь должен быть вызов для получения пользователей
@@ -36,8 +35,8 @@ export default function UserRoleManagement({ token }: UserRoleManagementProps) {
           { id: '2', name: 'Operator User', email: 'operator@example.com', role: 'operator', permissions: [] },
           { id: '3', name: 'Agronom User', email: 'agronom@example.com', role: 'agronom', permissions: [] }
         ]);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
       } finally {
         setLoading(false);
       }
@@ -53,7 +52,7 @@ export default function UserRoleManagement({ token }: UserRoleManagementProps) {
     }
 
     try {
-      const response = await api.post<{success: boolean, error?: string}>('/auth/roles', {
+      await api.post<{success: boolean, error?: string}>('/auth/roles', {
         userId: selectedUserId,
         roleId: selectedRole
       });
@@ -68,8 +67,8 @@ export default function UserRoleManagement({ token }: UserRoleManagementProps) {
       );
       
       setError('');
-    } catch (err: any) {
-      setError(err.message || 'Ошибка подключения к серверу');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Ошибка подключения к серверу');
     }
   };
 

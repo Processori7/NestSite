@@ -1,4 +1,3 @@
-import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 interface EnvironmentDataPoint {
@@ -8,7 +7,7 @@ interface EnvironmentDataPoint {
  co2: number;
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Генерируем данные за последние 24 часа с интервалом 1 час
     const now = new Date();

@@ -8,7 +8,7 @@ let zones = [
   { id: 4, name: "Zone D - Harvest", status: "обслуживание", temperature: 21, humidity: 60, lightIntensity: 0, cropType: "Cucumbers" },
 ];
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     return NextResponse.json({ zones });
   } catch (error) {

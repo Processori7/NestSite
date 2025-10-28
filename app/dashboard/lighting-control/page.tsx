@@ -3,7 +3,7 @@
 import { LightingControl } from "@/components/lighting-control";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Lightbulb, Sun, Zap, Palette } from "lucide-react";
+import { Lightbulb, Zap, Palette } from "lucide-react";
 
 export default function LightingControlPage() {
   return (

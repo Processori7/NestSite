@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { findUserByEmail, verifyPassword, signToken } from '@/lib/auth';
+import { verifyPassword, signToken } from '@/lib/auth';
 import { setAuthCookie } from '@/lib/cookies';
 
 // База данных пользователей (в реальном приложении это будет заменено на базу данных)
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Возвращаем токен и информацию о пользователе
-    const { password: _, ...userWithoutPassword } = user;
+    const { ...userWithoutPassword } = user;
     const response = NextResponse.json({
       token,
       user: userWithoutPassword
